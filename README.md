@@ -3,9 +3,8 @@ This repository contains a Flask application that allows users to create and man
 
 # Prerequisites
 Before setting up the application, ensure that you have the following prerequisites installed:
-
-Python 3.x
-MySQL
+- Python 3.x
+- MySQL
 
 # Installation and Setup
 To set up the application, follow these steps:
