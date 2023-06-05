@@ -30,15 +30,11 @@ Create database "log_book" and import the log_book.sql script
 The application uses a MySQL database to store log book data. The database integration is handled using Flask-SQLAlchemy.
 
 ## Workflow
-Sign Up: Users can create a new account by providing their email address and password.
-
-Sign In: Existing users can sign in using their email address and password.
-
-Log Book Creation: Once signed in, users can create multiple log books based on different log book types. They can provide a name and select a log book type during the creation process.
-
-Log Book Management: Users can view their existing log books on the dashboard. They can edit or delete log books as needed.
-
-Entry Management: Within each log book, users can add, edit, and delete entries.
+- Sign Up: Users can create a new account by providing their email address and password.
+- Sign In: Existing users can sign in using their email address and password.
+- Log Book Creation: Once signed in, users can create multiple log books based on different log book types. They can provide a name and select a log book type during the creation process.
+- Log Book Management: Users can view their existing log books on the dashboard. They can edit or delete log books as needed.
+- Entry Management: Within each log book, users can add, edit, and delete entries.
 
 The application provides a user-friendly interface with HTML, CSS, JavaScript, and Bootstrap 5, making it easy to navigate and interact with log books and entries.
 
