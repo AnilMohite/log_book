@@ -12,14 +12,13 @@ To set up the application, follow these steps:
 1. Clone the repository:
 
 ```bash
-# This is a bash command
 git clone https://github.com/AnilMohite/log_book.git
 ```
 
 
   
 2. Change into the project directory:
-```
+```shell
 cd log_book
 ```
 3. Install the required Python packages (find in Build folder):
