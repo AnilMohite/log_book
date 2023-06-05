@@ -10,7 +10,7 @@ Before setting up the application, ensure that you have the following prerequisi
 To set up the application, follow these steps:
 
 Clone the repository:
-git clone https://github.com/AnilMohite/log_book/
+git clone https://github.com/AnilMohite/log_book.git
   
 Change into the project directory:
 cd log_book
