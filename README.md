@@ -32,7 +32,7 @@ Create database "log_book" and import the log_book.sql script
 ```shell
     python app.py
 ```
-2. Open your web browser and navigate to http://localhost:5000 to access the application.
+2. Open your web browser and navigate to http://127.0.0.1:5000 to access the application.
 
 ## Database Integration
 The application uses a MySQL database to store log book data. The database integration is handled using Flask-SQLAlchemy.
