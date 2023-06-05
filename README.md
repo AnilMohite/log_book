@@ -23,7 +23,7 @@ Create database "log_book" and import the log_book.sql script
 
 # Flask Setup
 Start the Flask development server:
-python app.py
+    python app.py
 Open your web browser and navigate to http://localhost:5000 to access the application.
 
 # Database Integration
