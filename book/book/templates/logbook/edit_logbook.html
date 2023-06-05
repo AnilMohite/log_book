@@ -1,0 +1,38 @@
+{% include 'base/header.html' %}
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{url_for('home.home')}}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Log book edit</li>
+  </ol>
+</nav>
+
+<h2 class="text-center mt-2 mb-5">Log Book Edit</h2>
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+    <div class="formbox">
+        <form method="POST" action="{{ url_for('logbook.edit_logbook',logbook_id=logbook.id) }}">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{logbook.name}}" required>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Variable Type</label>
+            <select class="form-control" id="variable_type" name="variable_type" required>
+              <option value="" {% if logbook.variable_type == '' %}selected{% endif %}>Variable Type</option>
+              <option value="string" {{ 'selected' if logbook.variable_type == 'string' }}>String</option>
+              <option value="int" {{ 'selected' if logbook.variable_type == 'int' }}>Int</option>
+              <option value="double" {{ 'selected' if logbook.variable_type == 'double' }}>Double</option>
+            </select>
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+  {% include 'base/footer.html' %}

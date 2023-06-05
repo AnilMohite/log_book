@@ -1,0 +1,71 @@
+{% include 'base/header.html' %}
+
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<div class="mb-3 mt-4 text-end">
+    <a class="btn btn-info" href="{{ url_for('logbook.create_logbook') }}">+ Log Book</a>
+</div>
+<div class="table-responsive">
+    <table id="logbook-tbl" class="table table-striped" width="100%">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Created Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for logbook in logbooks %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ logbook.name }}</td>
+                <td>{{ logbook.variable_type }}</td>
+                <td>{{ logbook.created_date }}</td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="{{url_for('logbook.logbook_entries', logbook_id=logbook.id)}}">Add/View Entries</a>
+                    <a class="btn btn-warning btn-sm" href="{{url_for('logbook.edit_logbook', logbook_id=logbook.id)}}">Edit</a>            
+                    <a class="btn btn-danger btn-sm" onclick="confirmDelete('{{ logbook.id }}')">Delete</a>            
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    
+    $(document).ready(function () {
+        $('#logbook-tbl').DataTable();
+    });
+    function confirmDelete(logbookId) {
+        if (confirm('Are you sure you want to delete this logbook?')) {
+            $.ajax({
+                url: '/logbook/' + logbookId + '/delete',
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        location.reload();
+                    } else {
+                        alert('Failed to delete logbook.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.log(xhr.responseText);
+                    alert('An error occurred while deleting the logbook.');
+                }
+            });
+        }
+    }
+</script>
+{% include 'base/footer.html' %}

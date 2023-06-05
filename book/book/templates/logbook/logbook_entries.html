@@ -1,0 +1,102 @@
+{% include 'base/header.html' %}
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{url_for('home.home')}}">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ logbook.name }} Entries</li>
+  </ol>
+</nav>
+    <h2 class="text-center mt-2 mb-5">{{ logbook.name }} Entries</h2>
+    
+    <div class="text-center">
+        {% if entries %}
+            <h4>Existing Entries</h4>
+            <div class="existing-entries">
+            {% for entry in entries %}
+            <div id="entry-{{entry.id}}" class="entry d-flex justify-content-between">
+              <div class="">
+                {{ entry.log_value }}
+                <span class="ent-date">({{ entry.created_date.strftime('%Y %B %d %H:%M:%S') }})</span>
+              </div>
+              <div class="action">
+                <span class="entry-edt-btn btn" onclick="editEntry({{ entry.id }},'{{ entry.log_value }}')">Edit</span>
+                <span class="entry-del-btn btn" onclick="deleteEntry({{ entry.id }})">X</span>
+              </div>
+            </div>
+            {% endfor %}
+            </div>
+        {% else %}
+            <p>No entries found.</p>
+        {% endif %}
+    </div>
+    <div class="text-center mt-5">
+        <div class="row justify-content-center">
+          <div class"col-md-12">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                  {% for category, message in messages %}
+                      <div class="alert alert-{{ category }}" role="alert">
+                          {{ message }}
+                      </div>
+                  {% endfor %}
+              {% endif %}
+          {% endwith %}
+          </div>
+          <div class="col-md-6">
+            <form method="POST" id="logEntryForm" action="{{ url_for('logbook.logbook_entries', logbook_id=logbook.id) }}">
+              <div class="mb-3 d-flex align-items-end">
+                <input type="text" class="form-control me-2" id="log_value" name="log_value" placeholder="Log Value" required>
+                <button type="submit" class="entry-add-btn btn btn-primary" width='12rem'>Add Entry</button>
+                <button type="submit" class="entry-edit-btn btn btn-primary me-2" width='12rem'>Edit Entry</button>
+                <a href="{{url_for('logbook.logbook_entries', logbook_id=logbook.id)}}" class="entry-cancel-btn btn btn-warning" width='12rem'>Cancel</a>
+              </div>         
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      
+    <script>
+        function deleteEntry(entryId) {
+            if (confirm("Are you sure you want to delete this entry?")) {
+                $.ajax({
+                    url: "/logbook/{{ logbook.id }}/entries/" + entryId + "/delete",
+                    type: "POST",
+                    success: function(response) {
+                        var row = document.getElementById("entry-" + entryId);
+                        row.parentNode.removeChild(row);
+                    },
+                    error: function(xhr, status, error) {
+                        // Handle errors if any
+                    }
+                });
+            }
+        }
+
+        function editEntry(entryId,entryValue){
+            $('#log_value').val(entryValue);
+            $('.entry-edit-btn').css('display','block');
+            $('.entry-cancel-btn').css('display','block');
+            $('.entry-add-btn').css('display','none');
+            $('#logEntryForm').attr("action",'/logbook/{{ logbook.id }}/entries/' + entryId + '/edit')
+        }
+ 
+      $(document).ready(function() {
+          $('#logEntryForm').submit(function(event) {
+              var logValue = $('#log_value').val();
+              var variableType = '{{ logbook.variable_type }}';
+  
+              if (variableType === 'int') {
+                  if (!$.isNumeric(logValue)) {
+                      alert('Invalid log value. Please enter an integer.');
+                      event.preventDefault();
+                  }
+              } else if (variableType === 'double') {
+                  if (!$.isNumeric(logValue)) {
+                      alert('Invalid log value. Please enter a valid number.');
+                      event.preventDefault();
+                  }
+              }
+          });
+      });
+  </script>
+    {% include 'base/footer.html' %}
