@@ -1,12 +1,12 @@
 # Log Book
 This repository contains a Flask application that allows users to create and manage multiple log books. The application is integrated with a MySQL database and uses HTML, CSS, JavaScript, and Bootstrap 5 for the frontend.
 
-# Prerequisites
+## Prerequisites
 Before setting up the application, ensure that you have the following prerequisites installed:
 - Python 3.x
 - MySQL
 
-# Installation and Setup
+## Installation and Setup
 To set up the application, follow these steps:
 
 1. Clone the repository:
@@ -26,10 +26,10 @@ Create database "log_book" and import the log_book.sql script
     python app.py
 2. Open your web browser and navigate to http://localhost:5000 to access the application.
 
-# Database Integration
+## Database Integration
 The application uses a MySQL database to store log book data. The database integration is handled using Flask-SQLAlchemy.
 
-# Workflow
+## Workflow
 Sign Up: Users can create a new account by providing their email address and password.
 
 Sign In: Existing users can sign in using their email address and password.
