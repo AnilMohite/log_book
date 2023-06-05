@@ -10,26 +10,28 @@ Before setting up the application, ensure that you have the following prerequisi
 To set up the application, follow these steps:
 
 1. Clone the repository:
-
-```bash
+```shell
 git clone https://github.com/AnilMohite/log_book.git
 ```
 
-
-  
 2. Change into the project directory:
 ```shell
 cd log_book
 ```
+
 3. Install the required Python packages (find in Build folder):
+```shell
 pip install -r requirements.txt
+```
 
 4. Configure the MySQL database (find in Build folder): 
 Create database "log_book" and import the log_book.sql script
 
 ## Flask Setup
 1. Start the Flask development server:
+```shell
     python app.py
+```
 2. Open your web browser and navigate to http://localhost:5000 to access the application.
 
 ## Database Integration
