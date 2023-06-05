@@ -11,7 +11,7 @@ To set up the application, follow these steps:
 
 1. Clone the repository:
 <pre>
-```bash
+```
 # This is a bash command
 git clone https://github.com/AnilMohite/log_book.git
 ```
