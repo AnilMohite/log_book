@@ -21,10 +21,10 @@ pip install -r requirements.txt
 4. Configure the MySQL database (find in Build folder): 
 Create database "log_book" and import the log_book.sql script
 
-# Flask Setup
-Start the Flask development server:
+## Flask Setup
+1.Start the Flask development server:
     python app.py
-Open your web browser and navigate to http://localhost:5000 to access the application.
+2. Open your web browser and navigate to http://localhost:5000 to access the application.
 
 # Database Integration
 The application uses a MySQL database to store log book data. The database integration is handled using Flask-SQLAlchemy.
