@@ -19,8 +19,9 @@ git clone https://github.com/AnilMohite/log_book.git
 
   
 2. Change into the project directory:
+```
 cd log_book
-
+```
 3. Install the required Python packages (find in Build folder):
 pip install -r requirements.txt
 
